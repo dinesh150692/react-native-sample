@@ -1,0 +1,67 @@
+{
+  "name": "sample",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "postinstall": "rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json && cp ./node_modules/react-navigation/src/PlatformHelpers.web.js ./node_modules/react-navigation/src/PlatformHelpers.js"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  },
+  "dependencies": {
+    "moment": "^2.20.1",
+    "native-base": "^2.3.7",
+    "react": "16.2.0",
+    "react-moment": "^0.7.0",
+    "react-native": "0.53.0",
+    "react-native-camera": "git+https://git@github.com/react-native-community/react-native-camera.git",
+    "react-native-chartjs": "^1.0.2",
+    "react-native-drawer": "^2.5.0",
+    "react-native-easy-grid": "^0.1.16",
+    "react-native-i18n": "^2.0.12",
+    "react-native-icon": "^0.2.10",
+    "react-native-maps": "^0.20.1",
+    "react-native-modal": "^5.0.0",
+    "react-native-permissions": "^1.1.1",
+    "react-native-responsive-dimensions": "^1.0.2",
+    "react-native-splash-screen": "^3.0.6",
+    "react-native-system-setting": "^1.2.1",
+    "react-native-vector-icons": "^4.5.0",
+    "react-navigation": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.2.0",
+    "babel-preset-react-native": "4.0.0",
+    "enzyme": "^3.3.0",
+    "jest": "22.2.1",
+    "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
+    "regenerator-runtime": "^0.11.1"
+  },
+  "jest": {
+    "preset": "react-native",
+    "haste": {
+      "defaultPlatform": "ios",
+      "platforms": [
+        "android",
+        "ios"
+      ],
+      "providesModuleNodeModules": [
+        "react",
+        "react-native",
+        "native-base",
+        "react-navigation",
+        "react-native-camera",
+        "react-native-system-setting"
+      ]
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-navigation|native-base|react-native-camera|react-native-maps|react-native-system-setting)"
+    ]
+  }
+}
