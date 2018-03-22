@@ -100,7 +100,7 @@ android {
     defaultConfig {
         applicationId "com.sample"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         ndk {
@@ -137,20 +137,27 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-system-setting')
+    compile project(':react-native-splash-screen')
+    compile project(':react-native-maps')
+    compile project(':react-native-i18n')
+    compile project(':react-native-camera')
     api project(':react-native-i18n')
     api project(':react-native-camera')
     api project(':react-native-system-setting')
     api project(':react-native-splash-screen')
     api project(':react-native-vector-icons')
     api fileTree(dir: "libs", include: ["*.jar"])
-    api "com.android.support:appcompat-v7:23.0.1"
+    api "com.android.support:appcompat-v7:27.+"
     api "com.facebook.react:react-native:+"  // From node_modules
-    api (project(':react-native-camera')) {
-        exclude group: "com.android.support"
-    }
-    api ('com.android.support:exifinterface:26.0.1') {
-        force = true
-    }
+    compile (project(':react-native-camera')) {
+    	exclude group: "com.google.android.gms"
+	compile 'com.android.support:exifinterface:27.+'
+	}
+    compile ("com.google.android.gms:play-services-vision:10.2.0") {
+    	force = true;
+	}
     api project(':react-native-maps')
     api(project(':react-native-maps')){
         exclude group: 'com.google.android.gms', module: 'play-services-base'

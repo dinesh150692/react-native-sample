@@ -3,16 +3,16 @@ package com.sample;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
-import org.reactnative.camera.RNCameraPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.ninty.system.setting.SystemSettingPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
+import org.reactnative.camera.RNCameraPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.airbnb.android.react.maps.MapsPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,13 +29,13 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.asList(
           new MainReactPackage(),
-            new RNI18nPackage(),
+            new VectorIconsPackage(),
             new SystemSettingPackage(),
             new SplashScreenReactPackage(),
-            new RNCameraPackage(),
-            new VectorIconsPackage(),
-            new MapsPackage()
-      );
+            new MapsPackage(),
+            new RNI18nPackage(),
+            new RNCameraPackage()
+          );
     }
 
     @Override
