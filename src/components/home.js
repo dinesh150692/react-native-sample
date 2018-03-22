@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import FontIcons from 'react-native-vector-icons/FontAwesome';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
 import { View, StatusBar,StyleSheet,BackHandler, Platform, AsyncStorage } from 'react-native';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
 import I18n from './i18n/i18n';
@@ -45,7 +46,7 @@ class Home extends Component {
     render() {
         return ( 
             <Container style={styles.contentBackground}>
-                {/* {this._renderHeader()} */}
+                {this._renderHeader()}
                 <Content padder style={styles.contentBackground}>
                     <Card style={{marginVertical: responsiveHeight(1), paddingTop: responsiveHeight(3.5),marginHorizontal: responsiveWidth(1), alignSelf: 'center', alignItems:'center', elevation: 5}}>
                         <Row style={{marginHorizontal: responsiveWidth(1),height: responsiveHeight(12)}}>
@@ -85,4 +86,8 @@ const homeStyle = StyleSheet.create({
         textAlign: 'center'
     }
 });
-export default Home;
+
+
+const mapState = ({locale}) => ({locale});
+
+export default connect(mapState)(Home);

@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
 import { responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions";
 import { View, FlatList, StyleSheet, StatusBar, Platform, AsyncStorage } from 'react-native'
 import {
@@ -12,21 +13,23 @@ import {
 } from 'native-base';
 import FontIcons from 'react-native-vector-icons/FontAwesome';
 import I18n from './i18n/i18n';
+import { changeLocale } from '../redux/reducers/reducer';
 import styles from '../Style';
 
 class Language extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             loading: true,
             languagesList: [
-                {locale: Platform.OS == 'ios'? 'en' : 'en-US', name: 'English'},
+                {locale: Platform.OS == 'ios'? 'en' : 'en-IN', name: 'English'},
                 {locale: 'hi', name: 'हिंदी'},
                 {locale: 'ka', name: 'ಕನ್ನಡ'},
                 {locale: 'ta', name: 'தமிழ்'},
                 {locale: 'te', name: 'తెలుగు'}
             ],
-            currentLocale: I18n.locale,
+            currentLocale: this.props.locale,
             languageChange: false
         }
     }
@@ -48,7 +51,9 @@ class Language extends Component {
     }
     
     changeLanguage(locale){
-        I18n.locale= locale; 
+        console.log(locale);
+        I18n.locale = locale;
+        this.props.changeLocale(locale);
         this.setState({languageChange: !this.state.languageChange});
     }
 
@@ -56,7 +61,11 @@ class Language extends Component {
         return (
             <Header iosBarStyle="light-content" androidStatusBarColor="#62429b" style={[styles.background, {alignItems:'center'}]}>
                 <Left>
-                    <Button transparent icon onPress={() => {I18n.locale = this.state.currentLocale;this.props.navigation.goBack();}}>
+                    <Button transparent icon onPress={() => {
+                            this.props.changeLocale(currentLocale);
+                            this.props.navigation.goBack();
+                        }}
+                    >
                         <Icon android='md-arrow-back' ios="ios-arrow-back" style={styles.header} />
                     </Button>
                 </Left>
@@ -73,14 +82,15 @@ class Language extends Component {
             <Footer style={styles.background}>
                 <Button full transparent onPress={() => {
                     AsyncStorage.setItem('locale', I18n.locale);
-                    this.props.navigation.navigate('Splash');
-                    this.props.navigation.dispatch(
-                        NavigationActions.reset({
-                            type: 'Navigation/FORWARD',
-                            index: 0,
-                            actions: [NavigationActions.navigate({ routeName: 'Splash' })]
-                        })
-                    );
+                    // this.props.navigation.navigate('Splash');
+                    // this.props.navigation.dispatch(
+                    //     NavigationActions.reset({
+                    //         type: 'Navigation/FORWARD',
+                    //         index: 0,
+                    //         actions: [NavigationActions.navigate({ routeName: 'Splash' })]
+                    //     })
+                    // );
+                    this.props.navigation.goBack();
                 }}>
                     <Text style={{color: 'white'}}>{I18n.t('Continue')}</Text>
                 </Button>
@@ -98,7 +108,9 @@ class Language extends Component {
                         keyExtractor = {(item) => item.locale}
                         renderItem = {({item}) => 
                             <ListItem button noBorder style={{marginLeft: 0, paddingLeft: 17,backgroundColor: I18n.locale == item.locale ? 'white':'#F5F5F5'}} 
-                                onPress={() => {this.changeLanguage(item.locale)}}
+                                onPress={() => {
+                                    this.changeLanguage(item.locale)
+                                }}
                             >
                                 <Body>
                                     <Text>{item.name}</Text>
@@ -124,4 +136,7 @@ class Language extends Component {
     }
 }
 
-export default Language;
+const mapState = ({locale}) => ({locale});
+const mapDispatch = {changeLocale};
+
+export default connect(mapState, mapDispatch)(Language);

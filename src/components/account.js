@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { NavigationActions } from 'react-navigation';
 import { Row, Col} from 'react-native-easy-grid';
+import { connect } from 'react-redux';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from "react-native-responsive-dimensions";
 import { View, FlatList, StyleSheet, Platform, StatusBar, AsyncStorage } from 'react-native'
 import {
@@ -17,6 +18,7 @@ import FontIcons from 'react-native-vector-icons/FontAwesome';
 class Account extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             loading: true,
             renderList: [
@@ -138,4 +140,6 @@ const modalStyle = StyleSheet.create({
         borderColor: "rgba(0, 0, 0, 0.1)"
     }
 });
-export default Account;
+const mapState = ({locale}) => ({locale});
+
+export default connect(mapState)(Account);

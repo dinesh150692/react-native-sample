@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { AppRegistry, View, StatusBar } from 'react-native';
-import App from './src/App';
+import Root from './src/App';
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
 
-// //add the new color to the style property
-// class App extends React.Component {
-//     render() {
-//       return ( 
-//           <AppContent style = {{backgroundColor: 'white'}} transitionerStyle={{backgroundColor: 'white'}}/>
-//       );
-//     }
-//   }
+class App extends React.Component {
+    render() {
+      return ( 
+        <Provider store={store}>
+            <Root/>
+        </Provider>
+      );
+    }
+  }
   
 AppRegistry.registerComponent('sample', () => App);

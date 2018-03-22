@@ -5,11 +5,15 @@ import SplashScreen from 'react-native-splash-screen';
 import { NavigationActions } from 'react-navigation';
 import { responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions";
 import I18n from './i18n/i18n';
+import { connect } from 'react-redux';
+import { changeLocale } from '../redux/reducers/reducer';
+
 import styles from '../Style';
 const drawerImage = require('../assets/launch_screen.png');
 
 class Splash extends Component {
     constructor(props) {
+        console.log(props);
         super(props);
         this.state ={
             loggedIn : false
@@ -23,9 +27,9 @@ class Splash extends Component {
     _loadInitialState = async () => {
         AsyncStorage.getItem('locale').then((value) => {
             if(value && value != ''){
-                I18n.locale = value;
+                this.props.changeLocale(value);
             }else {
-                I18n.locale = Platform.OS == 'ios'? 'en' : 'en-US';
+                this.props.changeLocale(Platform.OS == 'ios'? 'en' : 'en-US');
             }
         });
         AsyncStorage.getItem('login').then((value) => {
@@ -92,4 +96,7 @@ class Splash extends Component {
 }
 
 
-export default Splash;
+const mapState = ({locale}) => ({locale});
+const mapDispatch = {changeLocale};
+
+export default connect(mapState, mapDispatch)(Splash);

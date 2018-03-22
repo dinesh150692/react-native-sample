@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "postinstall": "sh ./scripts/post_install.sh"
+    "postinstall": "sh ./scripts/post_install.sh",
+    "error": "sh ./scripts/error.sh"
   },
   "rnpm": {
     "assets": [
@@ -27,11 +28,15 @@
     "react-native-maps": "^0.20.1",
     "react-native-modal": "^5.0.0",
     "react-native-permissions": "^1.1.1",
+    "react-native-redux-i18n": "^1.0.4",
     "react-native-responsive-dimensions": "^1.0.2",
     "react-native-splash-screen": "^3.0.6",
     "react-native-system-setting": "^1.2.1",
     "react-native-vector-icons": "^4.5.0",
-    "react-navigation": "^1.0.0"
+    "react-navigation": "^1.0.0",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

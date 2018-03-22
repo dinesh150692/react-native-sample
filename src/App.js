@@ -43,8 +43,8 @@ const navigationOptions = (navigation, title) => ({
 const TransactionStack = StackNavigator(
   {
       Login : {screen: Login, navigationOptions:({header: null, tabBarVisible: false})},
-      Splash: {screen: Splash, navigationOptions:({header: null, tabBarVisible: false,})},
-      Home: {screen: Home, navigationOptions:({navigation}) => (navigationOptions(navigation, 'PhonePe Merchant Console'))},
+      Splash: {screen: Splash, navigationOptions:({header: null, tabBarVisible: false})},
+      Home: {screen: Home, navigationOptions:({header: null})},
       Transactions: {screen: Transactions, navigationOptions:({navigation}) => (navigationOptions(navigation, 'Transactions'))},
       Reports: {screen: Reports, navigationOptions:({navigation}) => (navigationOptions(navigation, 'Reports'))},
       Refund: {screen: Refund, navigationOptions:({navigation}) => (navigationOptions(navigation, 'Refund'))},
