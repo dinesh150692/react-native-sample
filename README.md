@@ -13,6 +13,7 @@ npm install
 #install pod dependencies
 cd ios && pod install
 
+#Export the ANDROID_HOME before running the command or update it in local.properties file under android folder
 #run in andorid
 react-native run android
 
@@ -22,5 +23,10 @@ react-native run ios
 
 # run tests with jest
 npm run test
+
+
+#For Demo purpose, use any valid mobile number with the password '1111' to login.
+
+
 ```
 
